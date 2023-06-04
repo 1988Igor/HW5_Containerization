@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  db:
+    image: mariadb:10.10.2
+    environment:
+      MYSQL_ROOT_PASSWORD: Roman2022!
+    deploy:
+      mode: replicated
+      replicas: 2
+
+  adminer:
+    image: adminer:4.8.1
+    restart: always
+    ports:
+      - 8888:8080
+    volumes:
+      - ./dumps:/dumps
+    
+    deploy:
+      mode: replicated
+      replicas: 1
